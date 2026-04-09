@@ -1,0 +1,98 @@
+---
+title: "Chord reference"
+description: "All 7 chord types supported by FretFlow's chord overlay, with intervals and semitone patterns."
+---
+
+FretFlow's chord overlay supports 7 chord types. Chords are stored as arrays of semitone intervals from the chord root and computed using `getChordNotes(rootNote, chordName)` in `theory.ts`.
+
+## Triads
+
+### Major Triad
+
+The foundation of Western harmony. Bright, stable, resolved.
+
+**Intervals:** 1 – 3 – 5
+
+**Semitones:** `[0, 4, 7]`
+
+**Example (C Major Triad):** C E G
+
+---
+
+### Minor Triad
+
+Dark and melancholic counterpart to the major triad.
+
+**Intervals:** 1 – ♭3 – 5
+
+**Semitones:** `[0, 3, 7]`
+
+**Example (A Minor Triad):** A C E
+
+---
+
+### Diminished Triad
+
+Tense and unstable. Common on the 7th degree of major scales.
+
+**Intervals:** 1 – ♭3 – ♭5
+
+**Semitones:** `[0, 3, 6]`
+
+**Example (B Diminished):** B D F
+
+---
+
+## Seventh chords
+
+### Major 7th
+
+Lush, jazzy major chord with a leading-tone 7th. Common in jazz and neo-soul.
+
+**Intervals:** 1 – 3 – 5 – 7
+
+**Semitones:** `[0, 4, 7, 11]`
+
+**Example (C Major 7th):** C E G B
+
+---
+
+### Minor 7th
+
+Smooth minor chord with a minor 7th. The backbone of jazz and R&B.
+
+**Intervals:** 1 – ♭3 – 5 – ♭7
+
+**Semitones:** `[0, 3, 7, 10]`
+
+**Example (A Minor 7th):** A C E G
+
+---
+
+### Dominant 7th
+
+Major triad with a minor 7th. Creates tension that resolves a perfect fifth down. Essential in blues and jazz.
+
+**Intervals:** 1 – 3 – 5 – ♭7
+
+**Semitones:** `[0, 4, 7, 10]`
+
+**Example (G Dominant 7th):** G B D F
+
+---
+
+## Other
+
+### Power Chord (5)
+
+Two-note chord — root and perfect 5th. No 3rd, so neither major nor minor in quality. Essential in rock and metal.
+
+**Intervals:** 1 – 5
+
+**Semitones:** `[0, 7]`
+
+**Example (E5):** E B
+
+<Note>
+The chord overlay root can be set independently of the scale root. Uncheck **Link chord root to scale** to choose a different chord root from the 12-note grid.
+</Note>

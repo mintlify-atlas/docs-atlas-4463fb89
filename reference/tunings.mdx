@@ -1,0 +1,82 @@
+---
+title: "Tuning reference"
+description: "All tunings supported by FretFlow, with string note assignments."
+---
+
+FretFlow supports four guitar/bass tunings. Tuning arrays are ordered **highest string first** (index 0 = thinnest/highest, index 5 = thickest/lowest for 6-string; index 3 for bass).
+
+Select a tuning from the **Tuning** dropdown in the Settings panel. All scale, chord, and shape calculations update automatically when the tuning changes.
+
+## Supported tunings
+
+### Standard
+
+The default guitar tuning. Used for the vast majority of songs.
+
+| String | Note |
+|---|---|
+| 1 (high e) | E4 |
+| 2 (B) | B3 |
+| 3 (G) | G3 |
+| 4 (D) | D3 |
+| 5 (A) | A2 |
+| 6 (low E) | E2 |
+
+---
+
+### Drop D
+
+Standard tuning with the low E string dropped a whole step to D. Enables single-finger power chords on strings 4–6.
+
+| String | Note |
+|---|---|
+| 1 (high e) | E4 |
+| 2 (B) | B3 |
+| 3 (G) | G3 |
+| 4 (D) | D3 |
+| 5 (A) | A2 |
+| 6 (low) | D2 |
+
+---
+
+### DADGAD
+
+Open tuning common in Celtic, folk, and fingerstyle guitar. Named for its open string notes from low to high.
+
+| String | Note |
+|---|---|
+| 1 (high) | D4 |
+| 2 | A3 |
+| 3 | G3 |
+| 4 | D3 |
+| 5 | A2 |
+| 6 (low) | D2 |
+
+---
+
+### Bass Standard (4 String)
+
+Standard 4-string bass tuning. FretFlow renders 4 strings when this tuning is selected.
+
+| String | Note |
+|---|---|
+| 1 (G) | G2 |
+| 2 (D) | D2 |
+| 3 (A) | A1 |
+| 4 (low E) | E1 |
+
+---
+
+## How tuning affects computations
+
+The tuning array drives all fretboard calculations:
+
+- **`getFretboardNotes(tuning, frets)`** — builds the 2D note layout for the entire neck
+- **`getFretNote(openStringNote, fretNumber)`** — computes the note name at any position
+- **`getFretNoteWithOctave(openStringNote, fretNumber)`** — adds the octave number for frequency calculation
+
+When tuning changes, CAGED shape anchor positions recalculate because the fret where the root note falls on each string is different.
+
+## Note format
+
+Open string notes are stored with octave suffix (e.g., `E4`, `B3`). The chromatic note name is extracted by `parseNote()`, which parses strings matching `[A-G]#?[0-9]`.

@@ -1,0 +1,53 @@
+---
+title: "3 Notes Per String"
+description: "Using the 3NPS fingering system in FretFlow to explore all scale positions."
+---
+
+## What is 3NPS?
+
+3 Notes Per String (3NPS) is a scale fingering system where exactly three notes are played on each string. It produces consistent finger spacing across the neck and is popular for building speed and connecting scale positions.
+
+A 7-note scale has 7 positions in 3NPS — one starting on each degree of the scale.
+
+## Enabling 3NPS mode
+
+Set **Fingering Pattern** to **3NPS** in the Settings panel.
+
+## Selecting a position
+
+After enabling 3NPS, a **Position** control appears with buttons **All** and **1** through **7**.
+
+| Position | Starts on |
+|---|---|
+| All | Every scale note across the full neck |
+| 1 | The root note (1st degree) |
+| 2 | The 2nd degree |
+| 3 | The 3rd degree |
+| 4 | The 4th degree |
+| 5 | The 5th degree |
+| 6 | The 6th degree |
+| 7 | The 7th degree |
+
+Selecting **All** is equivalent to the **All notes** fingering pattern.
+
+## How positions are computed
+
+FretFlow computes 3NPS positions dynamically rather than using hard-coded patterns. For a given position:
+
+1. The starting note (the scale degree for that position) is located on the lowest string (thickest, index 5 in standard tuning).
+2. Moving up string by string, the algorithm collects exactly 3 consecutive scale notes per string within a ±4/+6 fret search window around the current focus fret.
+3. The focus fret advances to keep the pattern in a compact horizontal position.
+
+This means 3NPS works with all 12 supported scales and all tunings without requiring separate pattern data.
+
+<Note>
+3NPS is most useful for 7-note scales. For pentatonic and blues scales (5–6 notes), the pattern will not always have exactly 3 notes per string, and the display falls back to showing all scale notes.
+</Note>
+
+## Octave repetition
+
+Because the fretboard contains multiple octaves, each position repeats approximately every 12 frets. FretFlow shows all repetitions of a position within frets 0–24.
+
+## Combining with chord overlay
+
+The chord overlay works with 3NPS just like with other fingering modes. Chord tones and scale-only notes are distinguished by color within each 3NPS position.

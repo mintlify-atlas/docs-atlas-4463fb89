@@ -1,97 +1,55 @@
 ---
-title: "Introduction"
-description: "Welcome to the new home for your documentation"
+title: "FretFlow"
+description: "An interactive guitar fretboard and music theory tool built with React 19 and TypeScript."
 ---
 
-## Setting up
+FretFlow is a browser-based tool for guitarists and music theory students. It visualizes scales, chords, and fingering patterns on an interactive fretboard — with no installation required.
 
-Get your documentation site up and running in minutes.
-
-<Card
-  title="Start here"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  Follow our three step quickstart guide.
-</Card>
-
-## Make it yours
-
-Design a docs site that looks great and empowers your users.
-
-<Columns cols={2}>
-  <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
-  >
-    Edit your docs locally and preview them in real time.
+<CardGroup cols={2}>
+  <Card title="Live app" icon="guitar" href="https://iecg.github.io/fretboard-app/">
+    Open FretFlow in your browser and start exploring.
   </Card>
-  <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
-  >
-    Customize the design and colors of your site to match your brand.
+  <Card title="Quickstart" icon="rocket" href="/quickstart">
+    Learn the interface in a few minutes.
   </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
+  <Card title="CAGED system" icon="shapes" href="/features/caged-system">
+    Visualize the five CAGED shapes across the fretboard.
   </Card>
-  <Card
-    title="API documentation"
-    icon="terminal"
-    href="/api-reference/introduction"
-  >
-    Auto-generate API documentation from OpenAPI specifications.
+  <Card title="Scale reference" icon="list" href="/reference/scales">
+    All 12 supported scales with intervals and semitone patterns.
   </Card>
-</Columns>
+</CardGroup>
 
-## Create beautiful pages
+## What FretFlow does
 
-Everything you need to create world-class documentation.
+<CardGroup cols={2}>
+  <Card title="Fretboard visualization" icon="table-columns" href="/features/fretboard">
+    Highlight any scale across the full 24-fret neck, with a 3-tier note system that distinguishes chord tones, scale-only notes, and off-scale chord tones.
+  </Card>
+  <Card title="Scale & chord overlay" icon="layer-group" href="/features/scales-chords">
+    Choose from 12 scales and 7 chord types. The chord overlay works independently from the scale root, so you can analyze chord tones against any scale.
+  </Card>
+  <Card title="CAGED shapes" icon="shapes" href="/features/caged-system">
+    View individual or multiple CAGED shapes with color-coded backgrounds. Shift-click to multi-select. Works for all scales, not just pentatonics.
+  </Card>
+  <Card title="3 Notes Per String" icon="music" href="/features/3nps">
+    Explore all 7 positions of any scale using the 3NPS fingering system, ideal for building speed and connecting positions.
+  </Card>
+  <Card title="Circle of Fifths" icon="circle" href="/features/circle-of-fifths">
+    Interactive annular selector for the root note, with key signature display, scale degree labels, and enharmonic equivalents.
+  </Card>
+  <Card title="Audio playback" icon="volume-high" href="/features/fretboard#audio-playback">
+    Tap any note to hear it played through the Web Audio API synth.
+  </Card>
+</CardGroup>
 
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
-  </Card>
-  <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
-  >
-    Add sample code to demonstrate how to use your product.
-  </Card>
-  <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
-  >
-    Display images and other media.
-  </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
+## Tech stack
 
-## Need inspiration?
+FretFlow is built with:
 
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
-</Card>
+- **React 19** + **TypeScript 6**
+- **Vite 8** for bundling and dev server
+- **Jotai** for state management (persisted to `localStorage`)
+- **Lucide React** for icons
+- **Web Audio API** for note synthesis
+- Deployed to **GitHub Pages**

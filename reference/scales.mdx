@@ -1,0 +1,156 @@
+---
+title: "Scale reference"
+description: "All 12 scales supported by FretFlow, with intervals, semitone patterns, and characteristic notes."
+---
+
+FretFlow supports 12 scales, organized into five categories. All scales are stored as arrays of semitone intervals from the root. Notes are stored internally as sharps; flat display is resolved at render time based on the key's accidental preference.
+
+## Major modes
+
+### Major (Ionian)
+
+The standard major scale. Seven notes, bright and resolved.
+
+**Intervals:** 1 – 2 – 3 – 4 – 5 – 6 – 7
+
+**Semitones:** `[0, 2, 4, 5, 7, 9, 11]`
+
+**Example (C Major):** C D E F G A B
+
+---
+
+### Lydian
+
+Major scale with a raised 4th (♯4/♯11). Dreamy and ethereal character.
+
+**Intervals:** 1 – 2 – 3 – ♯4 – 5 – 6 – 7
+
+**Semitones:** `[0, 2, 4, 6, 7, 9, 11]`
+
+**Characteristic note:** ♯4 (raised 4th — diverges from Major)
+
+---
+
+### Mixolydian
+
+Major scale with a lowered 7th (♭7). Blues-rock and dominant chord flavour.
+
+**Intervals:** 1 – 2 – 3 – 4 – 5 – 6 – ♭7
+
+**Semitones:** `[0, 2, 4, 5, 7, 9, 10]`
+
+**Characteristic note:** ♭7 (lowered 7th — diverges from Major)
+
+---
+
+## Minor modes
+
+### Natural Minor (Aeolian)
+
+The standard minor scale. Seven notes, dark and melancholic.
+
+**Intervals:** 1 – 2 – ♭3 – 4 – 5 – ♭6 – ♭7
+
+**Semitones:** `[0, 2, 3, 5, 7, 8, 10]`
+
+**Example (A Natural Minor):** A B C D E F G
+
+---
+
+### Dorian
+
+Minor scale with a natural 6th. Used in jazz and funk; slightly brighter than Natural Minor.
+
+**Intervals:** 1 – 2 – ♭3 – 4 – 5 – 6 – ♭7
+
+**Semitones:** `[0, 2, 3, 5, 7, 9, 10]`
+
+**Characteristic note:** natural 6 (raised 6th — diverges from Natural Minor)
+
+---
+
+### Phrygian
+
+Minor scale with a lowered 2nd. Spanish/flamenco flavour, dark and dramatic.
+
+**Intervals:** 1 – ♭2 – ♭3 – 4 – 5 – ♭6 – ♭7
+
+**Semitones:** `[0, 1, 3, 5, 7, 8, 10]`
+
+**Characteristic note:** ♭2 (lowered 2nd — diverges from Natural Minor)
+
+---
+
+### Locrian
+
+Minor scale with lowered 2nd and diminished 5th. Highly dissonant; rarely used melodically.
+
+**Intervals:** 1 – ♭2 – ♭3 – 4 – ♭5 – ♭6 – ♭7
+
+**Semitones:** `[0, 1, 3, 5, 6, 8, 10]`
+
+**Characteristic notes:** ♭2 and ♭5 (diverge from Natural Minor)
+
+---
+
+## Harmonic
+
+### Harmonic Minor
+
+Natural Minor with a raised 7th. Creates an augmented 2nd between ♭6 and 7, giving it a Middle Eastern/classical flavour.
+
+**Intervals:** 1 – 2 – ♭3 – 4 – 5 – ♭6 – 7
+
+**Semitones:** `[0, 2, 3, 5, 7, 8, 11]`
+
+**Characteristic note:** natural 7 (raised 7th — diverges from Natural Minor)
+
+---
+
+## Pentatonic
+
+### Minor Pentatonic
+
+Five-note minor scale. The most common scale for blues and rock soloing.
+
+**Intervals:** 1 – ♭3 – 4 – 5 – ♭7
+
+**Semitones:** `[0, 3, 5, 7, 10]`
+
+**Example (A Minor Pentatonic):** A C D E G
+
+---
+
+### Major Pentatonic
+
+Five-note major scale. Bright and versatile; common in country, pop, and gospel.
+
+**Intervals:** 1 – 2 – 3 – 5 – 6
+
+**Semitones:** `[0, 2, 4, 7, 9]`
+
+---
+
+## Blues
+
+### Minor Blues
+
+Minor Pentatonic with an added ♭5 (the blue note). The defining scale of the blues.
+
+**Intervals:** 1 – ♭3 – 4 – ♭5 – 5 – ♭7
+
+**Semitones:** `[0, 3, 5, 6, 7, 10]`
+
+**Blue note:** ♭5 (interval 6) — displayed in teal
+
+---
+
+### Major Blues
+
+Major Pentatonic with an added ♭3 (the blue note). Brighter blues flavour.
+
+**Intervals:** 1 – 2 – ♭3 – 3 – 5 – 6
+
+**Semitones:** `[0, 2, 3, 4, 7, 9]`
+
+**Blue note:** ♭3 (interval 3) — displayed in teal

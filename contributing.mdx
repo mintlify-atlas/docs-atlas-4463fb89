@@ -1,0 +1,127 @@
+---
+title: "Contributing"
+description: "How to contribute to FretFlow — branch strategy, commit conventions, and the release pipeline."
+---
+
+## Getting started
+
+FretFlow is an open-source project licensed under the AGPL v3. Contributions are welcome.
+
+```bash
+git clone https://github.com/iecg/fretboard-app.git
+cd fretboard-app
+npm install
+npm run dev
+```
+
+Always run lint and tests before committing:
+
+```bash
+npm run lint
+npm run test
+```
+
+## Branching strategy
+
+FretFlow uses a **main/develop** integration strategy.
+
+| Branch | Role |
+|---|---|
+| `main` | Stable, production-ready code. Deployed via tags only. |
+| `develop` | Integration branch. All feature work lands here first. |
+| `feature/*` | Short-lived branches cut from `develop`. |
+| `hotfix/*` | Emergency fixes cut from `main`. |
+
+**Rules:**
+- Never push directly to `main` or `develop` — both require a pull request.
+- Feature branches are cut from `develop` and merged back into `develop` via PR.
+- `develop` merges into `main` via PR when ready to release.
+- `hotfix/*` branches are cut from `main`, merged to `main` via PR, then back-merged to `develop`.
+
+**Typical workflow:**
+
+```bash
+git switch develop && git pull
+git switch -c feature/my-thing
+# ... make changes ...
+git push -u origin feature/my-thing
+# open PR → develop
+```
+
+## Commit conventions
+
+FretFlow uses [Conventional Commits](https://www.conventionalcommits.org/). Prefix every commit message:
+
+| Prefix | When to use |
+|---|---|
+| `feat:` | New feature or user-visible improvement |
+| `fix:` | Bug fix |
+| `chore:` | Dependencies, config, tooling, CI — no production code change |
+| `refactor:` | Code change with no behaviour change |
+| `docs:` | Documentation only |
+| `test:` | Adding or fixing tests |
+
+Keep the subject line under 72 characters. No period at the end.
+
+**Examples:**
+
+```
+feat: add transpose shortcut to circle of fifths
+fix: correct enharmonic display for Cb scale
+chore: bump vite to 8.1
+```
+
+## Automated releases
+
+Releases are fully automated. Every merge to `main` triggers:
+
+1. **`auto-release.yml`** — analyzes commits since last tag, computes semver bump, pushes tag
+2. **`release.yml`** — lint → test → build → GitHub Release with changelog
+3. **`deploy.yml`** — lint → test → build → GitHub Pages deployment
+
+### Semver bump rules
+
+| Commit type | Version bump |
+|---|---|
+| `feat!:` or `BREAKING CHANGE:` | Major |
+| `feat:` | Minor |
+| `fix:`, `chore:`, `refactor:`, `ci:`, `test:`, `docs:`, `style:` | Patch |
+
+<Warning>
+Never tag releases manually. Let `auto-release.yml` handle it. Never bump `major` without explicit coordination — it happens automatically when a breaking change PR is merged.
+</Warning>
+
+## CI pipeline
+
+CI runs on every push to `main` and `develop`, and on every PR targeting either branch. The pipeline runs:
+
+```bash
+npm run lint
+npm run test
+npm run build
+```
+
+All three must pass before merging.
+
+## Architecture overview
+
+| File | Purpose |
+|---|---|
+| `src/App.tsx` | Main component and application state |
+| `src/Fretboard.tsx` | Fretboard SVG visualization |
+| `src/CircleOfFifths.tsx` | Circle of Fifths interactive widget |
+| `src/DrawerSelector.tsx` | Reusable accordion dropdown selector |
+| `src/theory.ts` | Music theory: scales, chords, intervals, note display |
+| `src/guitar.ts` | Tuning presets and fretboard note computation |
+| `src/shapes.ts` | CAGED and 3NPS shape data and algorithms |
+| `src/audio.ts` | Web Audio API synth |
+| `src/degrees.ts` | Scale degree colors and mappings |
+| `src/store/atoms.ts` | Jotai atoms with localStorage persistence |
+
+## Key conventions
+
+- **Notes are always stored as sharps internally.** Flat display is resolved at render time via `getNoteDisplay()`.
+- **Tuning arrays are ordered highest string first** (index 0 = thinnest string).
+- **Fretboard cell coordinates** use `"stringIndex-fretIndex"` string keys (e.g., `"2-7"`).
+- **`clsx`** is used for all conditional class composition.
+- Use **`DrawerSelector`** for any new selector controls to maintain visual consistency.

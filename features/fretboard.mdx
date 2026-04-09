@@ -1,0 +1,92 @@
+---
+title: "Fretboard visualization"
+description: "How the interactive fretboard works, including note classification, controls, and audio playback."
+---
+
+## Overview
+
+The fretboard spans frets 0–24 and supports 4-string to 6-string tunings. It renders notes as circular bubbles on a dark wood-textured neck using SVG for shape overlays and HTML for note cells.
+
+## Note classification
+
+Each note on the fretboard is classified into one of six visual states depending on the active scale and chord overlay:
+
+| Class | Color | Meaning |
+|---|---|---|
+| `root-active` | Orange | Root note of the scale, highlighted or a chord tone |
+| `chord-tone` | Blue | In scale and in the active chord |
+| `note-active` | Blue (dim) | In scale, no chord overlay active |
+| `note-scale-only` | Blue (muted) | In scale, chord overlay active but not a chord tone |
+| `chord-outside` | Outlined | In chord but not in scale |
+| `note-inactive` | Hidden / transparent | Neither in scale nor chord |
+| `note-blue` | Teal | Blue note (blues scales) or divergent modal note |
+
+When **Chord only (hide scale)** is checked, `note-scale-only` notes are hidden so only chord tones remain visible.
+
+## Display modes
+
+Use the **Note Labels** control to switch between three display formats:
+
+| Mode | Display |
+|---|---|
+| Notes | Note name (e.g., `A`, `B♭`, `F♯`) |
+| Intervals | Interval from root (e.g., `1`, `b3`, `5`, `b7`) |
+| None | No label inside the note bubble |
+
+Accidentals render as proper musical symbols: `♯`, `♭`, `𝄪` (double sharp), `𝄫` (double flat).
+
+## Fret range controls
+
+The toolbar above the fretboard provides three control groups:
+
+### Go to
+Jump-scroll to a position:
+- **Open** — scrolls to fret 0
+- **Mid** — scrolls to fret 5
+- **High** — scrolls to fret 12
+
+These buttons are disabled if the target fret is outside the current fret range window.
+
+### Frets
+Narrow or widen the visible fret window:
+- The **start fret** can be incremented from 0 up to `endFret - 1`
+- The **end fret** can be decremented down to `startFret + 1` or up to fret 24
+
+This lets you focus on a specific position, such as frets 5–12 for open-position practice.
+
+### Zoom
+Scale the width of each fret column:
+- **Auto** (100%) fills the container width automatically
+- Increasing zoom adds horizontal scroll, enabling drag-to-pan
+
+Zoom increments in steps of 10%. Maximum zoom is 300%.
+
+## Drag to scroll
+
+When the fretboard is wider than the container (due to fret range or zoom), drag left and right to scroll. A brief motion threshold of 3px prevents accidental scrolling when tapping a note.
+
+## Audio playback
+
+Tapping any note bubble plays the note through a Web Audio API synth. The synth uses a triangle oscillator with a low-pass filter and an amplitude envelope (attack 10ms, decay + release 2s total) to produce a warm, guitar-like tone.
+
+<Note>
+The audio context initializes on first tap to comply with browser autoplay restrictions. If you don't hear anything on the first tap, tap again.
+</Note>
+
+Use the **mute button** (🔊 / 🔇) in the header to mute or unmute all playback. The mute state persists across sessions.
+
+## Chord fret spread
+
+When a chord overlay and CAGED shapes are both active, a **Chord Spread** control appears in the toolbar. This extends or narrows the fret window used to determine which chord-outside notes are visible near each shape, from 0 to 4 frets.
+
+## Fretboard markers
+
+Standard fret position markers are rendered at frets: 3, 5, 7, 9, 12, 15, 17, 19, 21, and 24. Frets 12 and 24 show double dots.
+
+## String thickness
+
+String lines scale with string index — the thinnest string (high E, index 0) renders at ~1.9px and the thickest (low E, index 5) at ~3.9px.
+
+## Mobile layout
+
+On viewports below 768px, the fretboard fills the screen and zoom is calculated so approximately 7 frets fit the viewport width. The controls move into a tab bar with three tabs: **Key**, **Scale**, and **Settings**.

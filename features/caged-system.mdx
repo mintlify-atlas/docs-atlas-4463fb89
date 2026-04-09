@@ -1,0 +1,91 @@
+---
+title: "CAGED system"
+description: "How FretFlow implements CAGED shapes across all 12 scales, including pentatonic, 7-note, and blues scales."
+---
+
+## What is the CAGED system?
+
+The CAGED system divides the guitar neck into five overlapping regions, each named after the open chord shape it resembles: **C**, **A**, **G**, **E**, and **D**. Together they tile the entire fretboard, giving you five ways to play any scale in any position.
+
+FretFlow extends CAGED beyond major/pentatonic to work with all 12 supported scales.
+
+## Enabling CAGED mode
+
+Set **Fingering Pattern** to **CAGED** in the Settings panel.
+
+## Selecting shapes
+
+By default, all five shapes are shown. To isolate a single shape, click its letter button (**C**, **A**, **G**, **E**, or **D**). To multi-select, **Shift+click** additional shape buttons — Shift+clicking a selected shape removes it (at least one shape always stays active).
+
+Click **All** to restore all five shapes at once.
+
+## Shape colors
+
+Each CAGED shape has a fixed color that applies to both the background polygon and the note bubbles inside it:
+
+| Shape | Color |
+|---|---|
+| E | Red (`#ef4444`) |
+| D | Yellow (`#eab308`) |
+| C | Green (`#22c55e`) |
+| A | Blue (`#3b82f6`) |
+| G | Purple (`#a855f7`) |
+
+Background polygons use the same hue at 18% opacity.
+
+## Shape labels
+
+Set **Shape Labels** in the Settings panel to:
+
+- **None** — no labels (default)
+- **CAGED** — shows the shape letter and quality, e.g., `Em Shape`, `Am Shape`
+- **Modal** — shows the starting note and mode name, e.g., `A Aeolian`, `D Dorian`
+
+Labels appear below the fretboard, centered on each shape polygon. Shapes that are truncated by the fretboard boundary (fret 0 or fret 24) do not show a label.
+
+## How shapes are computed
+
+### Pentatonic and blues scales
+
+For 5-note scales (Minor Pentatonic, Major Pentatonic) and blues scales, FretFlow uses pre-defined polygon templates (`SHAPE_TEMPLATES_PENT`). Each template specifies per-string left and right fret offsets from the anchor note.
+
+### 7-note scales
+
+For 7-note scales, FretFlow uses scale-specific templates:
+
+| Scale | Template used |
+|---|---|
+| Natural Minor | Standard 7-note minor template |
+| Major | Standard 7-note minor template (remapped to relative minor) |
+| Dorian | Dorian-specific template |
+| Phrygian | Phrygian-specific template |
+| Lydian | Dorian template (Lydian → relative Dorian) |
+| Mixolydian | Phrygian template (Mixolydian → relative Phrygian) |
+| Locrian | Locrian-specific template |
+| Harmonic Minor | Harmonic Minor-specific template |
+
+### Major-quality remapping
+
+For major-quality scales (those containing a major 3rd interval), shape anchor positions are remapped to the **relative minor root** (a minor third below the major root). The shape label also remaps — for example, the C shape of a major scale corresponds to the A shape of its relative minor.
+
+The remapping table is:
+
+| Major shape | Equivalent minor shape |
+|---|---|
+| C | A |
+| A | G |
+| G | E |
+| E | D |
+| D | C |
+
+### Fretboard edge wrapping
+
+When a shape's intended fret range overshoots fret 0 or fret 24 by 1–2 frets, FretFlow wraps those notes to an adjacent string. If more than 2 notes need wrapping, the wrap is discarded and the shape renders without the out-of-range notes.
+
+## Shape boundaries
+
+Adjacent shape polygons share boundaries at the midpoint between them. FretFlow adds a 0.3-fret overlap buffer between adjacent polygons to eliminate SVG anti-aliasing gaps at shape edges.
+
+## Tuning awareness
+
+Shape anchor positions recalculate automatically when you change tuning. The anchor fret is found by searching the anchor string for the root or relative-minor root note.

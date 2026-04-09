@@ -1,0 +1,60 @@
+---
+title: "Circle of Fifths"
+description: "How the interactive Circle of Fifths works in FretFlow for root note selection, key signatures, and scale degree display."
+---
+
+## Overview
+
+The Circle of Fifths is the primary root note selector in FretFlow. It is an interactive SVG with 12 annular segments arranged in fifths order. The active segment (current root note) is visually highlighted.
+
+## Selecting a root note
+
+Click any segment to set it as the root note. The fretboard and summary bar update immediately.
+
+The circle is arranged clockwise in perfect fifths:
+
+**C → G → D → A → E → B → F♯/G♭ → C♯/D♭ → A♭ → E♭ → B♭ → F → C**
+
+## Key signature display
+
+The center of the circle shows:
+- The **root note name** (top)
+- The **key signature** (bottom), expressed as the number of sharps or flats
+
+For example:
+- C → `♮` (no accidentals)
+- G → `1♯`
+- F → `1♭`
+- B → `5♯`
+- D♭ → `5♭`
+
+## Scale degree labels
+
+Inside each segment, FretFlow shows the **diatonic degree** of that pitch relative to the active root and scale. The degree label uses Roman numerals with quality indicators:
+
+| Example label | Meaning |
+|---|---|
+| `I` | Major tonic |
+| `i` | Minor tonic |
+| `ii°` | Diminished supertonic |
+| `III+` | Augmented mediant (Harmonic Minor) |
+| `V` | Dominant |
+
+Degree labels use the same color coding as the summary bar — amber for tonic, blue for supertonic, emerald for mediant, red for subdominant, violet for dominant, pink for submediant, and indigo for leading tone.
+
+The conversion from circle-of-fifths position to chromatic interval uses: `(circlePosition × 7) mod 12`. This correctly maps each circle segment to its chromatic semitone distance from the root.
+
+## Enharmonic display
+
+Some segments show two names — the primary spelling and its enharmonic equivalent in smaller text below:
+
+- F♯/G♭ always shows both names
+- Other positions show the enharmonic when the scale-aware spelling differs from the default
+
+## Flat / sharp toggle
+
+Click the **♭ / ♯** button (positioned next to the circle on desktop, or in the Key tab on mobile) to switch between flat and sharp notation for all note names throughout the app — the fretboard, summary bar, circle of fifths, and dropdown selectors.
+
+## Mobile
+
+On mobile, the circle of fifths appears in the **Key** tab of the bottom tab bar, together with the accidental toggle and the scale/chord summary.

@@ -1,0 +1,96 @@
+---
+title: "Scales and chord overlay"
+description: "How to select scales, add chord overlays, and use interval filters in FretFlow."
+---
+
+## Selecting a scale
+
+Use the **Scale** dropdown to choose from 12 scales. The dropdown groups them by category:
+
+| Category | Scales |
+|---|---|
+| Major Modes | Major, Lydian, Mixolydian |
+| Minor Modes | Natural Minor, Dorian, Phrygian, Locrian |
+| Harmonic | Harmonic Minor |
+| Pentatonic | Minor Pentatonic, Major Pentatonic |
+| Blues | Minor Blues, Major Blues |
+
+The fretboard highlights all notes in the selected scale immediately. The **Circle of Fifths** and the summary bar below the fretboard both update to reflect the new scale.
+
+### Note spelling
+
+For 7-note scales, notes are spelled using proper scale-aware letter names. For example, in D Major the note at interval 3 (the major 3rd) displays as `F♯`, not `G♭`, because `F` is the expected letter for the 3rd degree of D.
+
+For pentatonic and blues scales (5–6 notes), standard flat/sharp display is used based on the root's key preference.
+
+### Accidental preference
+
+Keys that natively prefer flats use flat notation by default. You can override this at any time with the **♭ / ♯** toggle button. The following keys default to flats:
+
+`F`, `B♭`, `E♭`, `A♭`, `D♭`, `G♭`
+
+### Blue notes and divergent notes
+
+For blues scales, the **blue note** is highlighted with a teal color:
+- **Minor Blues** — the ♭5 (tritone)
+- **Major Blues** — the ♭3
+
+For modal scales (Dorian, Phrygian, Lydian, Mixolydian, Locrian, Harmonic Minor), notes that differ from the parent major or natural minor scale are highlighted with the same teal color to draw attention to the characteristic interval.
+
+## Chord overlay
+
+The **Chord Overlay** dropdown lets you superimpose a chord on top of the current scale. Chord tones are highlighted in blue; non-chord scale notes are dimmed.
+
+### Available chords
+
+| Category | Chords |
+|---|---|
+| Triads | Major Triad, Minor Triad, Diminished Triad |
+| Seventh Chords | Major 7th, Minor 7th, Dominant 7th |
+| Other | Power Chord (5) |
+
+Select **None** to remove the chord overlay.
+
+### Linking chord root to scale
+
+When **Link chord root to scale** is checked (the default), the chord root automatically follows the scale root. Uncheck it to independently select any of the 12 chromatic notes as the chord root using the note grid that appears.
+
+### Chord only (arpeggio view)
+
+Check **Chord only (hide scale)** to hide all scale-only notes, leaving only chord tones visible. This is useful for visualizing arpeggios — the notes you'd emphasize when soloing over a specific chord.
+
+### Interval filter
+
+The **Interval Filter** dropdown lets you restrict which chord tones are highlighted. This is useful for focusing on specific harmonic elements:
+
+| Filter | Intervals shown |
+|---|---|
+| All | All chord tones |
+| Triad | Root, 3rd (major or minor), 5th |
+| 7th Chord | Triad + 7th (major or dominant) |
+| Power Chord | Root + 5th only |
+| Guide Tones | 3rd and 7th only |
+| Shell Voicing | Root, 3rd, 7th |
+| Root & 3rd | Root + 3rd only |
+| Root & 5th | Root + 5th only |
+| Root & 7th | Root + 7th only |
+| 3rd & 5th | 3rd + 5th only |
+| 3rd & 7th | 3rd + 7th only |
+
+The root (interval 0) is always included in the filter output to keep root-active note classification anchored correctly.
+
+## Summary bar
+
+Below the fretboard (desktop) or in the **Key** tab (mobile), the summary bar shows all notes in the current scale with their interval degrees color-coded by function:
+
+| Degree | Color |
+|---|---|
+| I / i | Amber (tonic) |
+| II / ii | Blue (supertonic) |
+| III / iii | Emerald (mediant) |
+| IV / iv | Red (subdominant) |
+| V / v | Violet (dominant) |
+| VI / vi | Pink (submediant) |
+| VII / vii | Indigo (leading tone) |
+
+When a chord overlay is active, the chord tones appear in a second row with a distinct outline.
